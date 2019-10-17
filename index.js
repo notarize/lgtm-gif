@@ -16,8 +16,8 @@ async function run() {
     core.info("Got Token");
     core.info(`${process.env.TEST_ENV}`);
     const response = await fetch(`https://api.giphy.com/v1/gifs/search?api_key=${GIPHY_API_KEY}&q=lgtm`);
-    const giphies = await(response.json());
-    core.info(JSON.stringify(giphies['data']));
+    const giphies = await(response.json())['data'];
+    core.info(JSON.stringify(giphies));
     core.info(`Length: ${giphies.length}`);
     const randomIndex = parseInt(Math.random() * giphies.length);
     core.info(`Index: ${randomIndex}`);
