@@ -1,6 +1,6 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
-
+const fetch = require('node-fetch');
 
 // most @actions toolkit packages have async methods
 async function run() {
