@@ -34,19 +34,19 @@ async function run() {
 
     const client = new github.GitHub(input.token);
     const lgtmComment = await generateLgtmComment(input.giphyApiKey);
-    if (matchComment) {
-      if (input.githubIssueNumber == "" && input.githubPullRequestNumber == "") {
-        core.setFailed("no issue number and pull request number");
+    if (matchComment || matchReview) {
+      if (!input.githubIssueNumber && !input.githubPullRequestNumber) {
+        core.setFailed('no issue number and pull request number');
         return;
       }
       var number;
-      if (input.githubIssueNumber != "") {
+      if (input.githubIssueNumber) {
         number = parseInt(input.githubIssueNumber);
         if (!number) {
           core.setFailed('unable to convert string to int in issue number');
           return;
         }
-      } else if (input.githubPullRequestNumber != "") {
+      } else if (input.githubPullRequestNumber) {
         number = parseInt(input.githubPullRequestNumber);
         if (!number) {
           core.setFailed('unable to convert string to int in pull request number');
