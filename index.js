@@ -56,9 +56,10 @@ async function run() {
       const request = {
       	owner: owner,
       	repo: repo,
-      	number: number,
+      	issue_number: number,
       	body: lgtmComment
       };
+      core.info(`Request: ${request}`);
       const response = await client.issues.createComment(request);
       core.info(`response: ${response.status}`);
       if (response.status !== 200) {
