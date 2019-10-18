@@ -5,7 +5,7 @@ const fetch = require('node-fetch');
 // most @actions toolkit packages have async methods
 async function run() {
   try {
-    const inputs = {
+    const input = {
       token: core.getInput('repo-token', {required: true}),
       giphyApiKey: process.env.GIPHY_API_KEY,
       githubRepository: process.env.GITHUB_REPOSITORY,
@@ -32,7 +32,7 @@ async function run() {
     const owner = slugs[0];
     const repo = slugs[1];
 
-    const client = new github.GitHub(inputs.token);
+    const client = new github.GitHub(input.token);
     const lgtmComment = await generateLgtmComment(input.giphyApiKey);
     if (matchComment) {
       if (input.githubIssueNumber == "" && input.githubPullRequestNumber == "") {
