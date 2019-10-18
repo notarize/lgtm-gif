@@ -59,10 +59,10 @@ async function run() {
       	issue_number: number,
       	body: lgtmComment
       };
-      core.info(`Request: ${request}`);
+      core.info(`Request: ${JSON.stringify(request)}`);
       const response = await client.issues.createComment(request);
       core.info(`response: ${response.status}`);
-      if (response.status !== 200) {
+      if (response.status >= 300 || response.status < 200) {
         core.error('Updating the pull request has failed');
       }
       return;
